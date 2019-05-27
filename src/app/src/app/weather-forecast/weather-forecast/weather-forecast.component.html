@@ -1,0 +1,26 @@
+<div class="container d-flex flex-column align-content-between p-2">
+  <div class="search d-flex">
+    <input type="text" class="" placeholder="Input city name" spellcheck="false" class="form-control" id='search' >
+    <button (click)="cleanSearch()">X</button>
+</div>
+     <button class="btn" (click)="searchCity()" (keyup.enter)="searchCity()">Search</button>
+
+  <div class="mainWeatherContainer">
+    <div class="display-2">{{ customWeather?.temp}}<span class="display-3"><sup>&deg;C</sup></span></div>
+    <img src={{customWeather?.icon}}>
+    <h3>{{ customWeather?.cityName}}</h3>
+    <h6>{{ customWeather?.weatherKind}}</h6>
+    <div class="fiveDaysForecastContainer">
+        <ul *ngFor="let day of forecast" class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>{{day.date}}</div>
+              <div>{{day.temp}}</div>
+            </li>
+        </ul>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-center" [routerLink]="['/fullWeather']" routerLinkActive="router-link-active" >more...</li>
+        </ul>
+    </div>
+  </div>
+
+</div>

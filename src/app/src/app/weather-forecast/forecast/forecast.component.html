@@ -1,0 +1,14 @@
+<div class="back display-5 p-2" [routerLink]="['/weather']" routerLinkActive="router-link-active" >Back</div>
+<div class="m-3 ">Forecast for five days</div>
+<div *ngFor="let day of forecast" class="container">
+    <!-- <div><img src={{day?.icon}}></div> -->
+
+    <div class="box">
+      <!-- {{day | json}} -->
+      <div>{{day.date}}</div>
+      <img src={{day?.img}}>
+      <div>{{day.tempMax}}<span>&deg;C</span></div>
+      <div>{{day.tempMin}}<span>&deg;C</span></div>
+      <div>{{day.description}}</div>
+    </div>
+</div>

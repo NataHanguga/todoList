@@ -1,0 +1,39 @@
+<button class="btn btn-success " *ngIf="!opened" (click)="opened = !opened">Add</button>
+<!-- add block -->
+<div *ngIf="opened" >
+  <button (click)="opened = !opened">X</button>
+  <form #addNewTodoItem="ngForm" class="d-flex flex-column" [formGroup]="todoItem" (ngSubmit)="addTodoItem()">
+    <input type="text" id="title" placeholder="Title" formControlName="title" class="form-control"
+    required mdbValidate mdbInput>
+    <textarea id="description" placeholder="Description" formControlName="description"></textarea>
+    <button type="submit" class="btn btn-success">Save Todo</button>
+  </form>
+</div>
+
+<div *ngIf="!opened">
+
+  <div *ngFor="let item of todo | sort:'isComplited' | sort:'data'" class="list-group-item list-group-item-action flex-column">
+<!-- show block -->
+        <div id={{item.isComplited}} *ngIf="!item.canEditCode" class="d-flex w-100 flex-row justify-content-between align-items-center">
+          <div  class=" mr-3" (click)="item.isComplited === true ? item.isComplited = false : item.isComplited = true; complitedTodoItem(item._id)">{{item.isComplited}}</div>
+          <div class="d-flex w-75 justify-content-between flex-column" >
+            <h5 class="mb-1 " (click)="item.canEditCode = true">{{item.title}}</h5>
+            <small>{{item.data | datePipe }}</small>
+          </div>
+          <button  class="btn btn-sm btn-danger" (click)="deleteTodoItem(item._id)">Delete</button>
+        </div>
+<!-- edit block -->
+          <div *ngIf="item.canEditCode" class="d-flex flex-column">
+            <form class="d-flex flex-column" [formGroup]="todoItem" >
+              <!-- <button (click)="addTextToTextarea(item.description)">ff</button> -->
+              <small class="pull-right text-danger" (click)="item.canEditCode = false">Close</small>
+              <input type="text"  value={{item.title}} id="title" placeholder="Title" formControlName="title" class="form-control"
+              required mdbValidate mdbInput>
+              <input type="text" value={{item.description}} placeholder="Description" formControlName="description" class="form-control"
+              >
+              <button type="submit" class="btn btn-warning" (click)="editTodoItem(item._id, item); item.canEditCode = false;  ">Edit Todo Item</button>
+            </form>
+        </div>
+
+  </div>
+</div>
