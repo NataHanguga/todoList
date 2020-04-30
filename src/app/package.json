@@ -26,7 +26,7 @@
     "bootstrap": "^4.3.1",
     "cities.json": "^1.1.5",
     "core-js": "^2.6.9",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng4-geoautocomplete": "^0.1.0",
     "ngx-google-places-autocomplete": "^2.0.3",
     "popper": "^1.0.1",
